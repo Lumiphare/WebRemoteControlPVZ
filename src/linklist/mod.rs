@@ -74,7 +74,7 @@ impl List {
 
 #[cfg(test)]
 mod test {
-    use crate::{List};
+    use crate::linklist::{List};
     #[test]
     fn test1() {  // 测试
         let mut list = List::new();
@@ -86,4 +86,3 @@ mod test {
         println!("{:?}", list.to_vec());
     }
 }
-fn main() {}
