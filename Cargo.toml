@@ -1,0 +1,37 @@
+[package]
+name = "my_rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = "0.23.1"
+futures-util = "0.3.30"
+#win_desktop_duplication = "0.10.8"
+#ffmpeg-next = "7.0.2"
+anyhow = "1.0.86"
+#image = "0.25.1"
+webrtc = "=0.11.0"
+#clap = "4.5.11"
+clap = "3"
+env_logger = "0.11.5"
+chrono = "0.4.38"
+log = "0.4.22"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1.0.120"
+base64 = "0.22.1"
+lazy_static = "1.5.0"
+hyper = { version = "1.4.1", features = ["full"] }
+signal = { path = "src/signal" }
+axum = "0.7.5"
+enigo = "0.2.1"
+
+
+[dependencies.windows]
+version = "0.58.0"
+features = [
+   "Win32_UI_WindowsAndMessaging",
+   "Win32_Foundation",
+   "Win32_UI_Input_KeyboardAndMouse",
+   "Win32_Graphics_Gdi",
+]
