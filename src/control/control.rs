@@ -12,10 +12,8 @@ use enigo::{Enigo, Mouse,
 use anyhow::Result;
 
 pub fn post_message_to_control(v_num: Vec<i32>) -> Result<()> {
+    // let title_name = "植物大战僵尸杂交版v2.3.5 ";
     let title_name = "植物大战僵尸杂交版v2.0.88";
-    // let title_name = "draw - Cent Browser";
-    // let title_name = "Sakura Hime";
-    // let title_name = "樱之诗";
 
     let title_name_u16: Vec<u16> = OsStr::new(title_name)
         .encode_wide()

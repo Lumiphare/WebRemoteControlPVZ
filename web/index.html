@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <style>
+      textarea {
+        width: 500px;
+        min-height: 75px;
+      }
+    </style> -->
+  </head>
+  <body>
+    Browser base64 Session Description<br />
+    <textarea id="localSessionDescription" readonly="true"></textarea> <br />
+
+    Golang base64 Session Description<br />
+    <textarea id="remoteSessionDescription" readonly="true"></textarea> <br />
+    <!-- <button onclick="window.getSession()">Get Session</button><br /> -->
+    <button onclick="window.startSession()">Start Session</button><br />
+    <br />
+    <button id="fullscreen" type="submit">全屏</button>
+
+    Video<br />
+    <div id="remoteVideos"></div>
+    <video id="app-screen" oncontextmenu="return false;" poster="/img/loading.gif" playsinline onloadstart="this.volume=0.5" autoplay></video>
+    <br />
+
+    Logs<br />
+    <div id="div"></div>
+  </body>
+</html>
+<script src="appcontroller.js"></script>
+<script src="rtcp.js"></script>
+<script>
+  window.getSession = () => {
+    fetch("http://192.168.50.34:3000/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: document.getElementById("localSessionDescription").value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        document.getElementById("remoteSessionDescription").value = data.data;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+</script>

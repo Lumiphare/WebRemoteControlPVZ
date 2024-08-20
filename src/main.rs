@@ -5,13 +5,16 @@ use anyhow::Result;
 // use serde::Deserialize;
 
 use axum::{
-    response::{Html}, routing::{get, post}, Json, Router
+    response::{Html}, 
+    routing::{get, post, get_service}, 
+    Json, Router
 };
 use tokio::sync::oneshot;
+use tower_http::services::ServeDir;
 
 async fn serve_html() -> impl axum::response::IntoResponse {
     // Html(include_str!("C:/Users/Administrator/Desktop/webrtc/rtp_to_webrtc.html"))
-    let html_content = std::fs::read_to_string("C:/Users/Administrator/Desktop/webrtc/rtp_to_webrtc.html")
+    let html_content = std::fs::read_to_string("web/index.html")
     .expect("Failed to read HTML file");
 
     // 返回 HTML 响应
@@ -49,8 +52,9 @@ async fn recv_and_send_possession(Json(payload): Json<serde_json::Value>) -> Jso
 #[tokio::main]
 async fn main() -> Result<()> {
     let app = Router::new()
-        .route("/", get(serve_html))
-        .route("/post", post(recv_and_send_possession));
+        // .route("/", get(serve_html))
+        .route("/post", post(recv_and_send_possession))
+        .nest_service("/", get_service(ServeDir::new("./web")));
 
     let listener = tokio::net::TcpListener::bind("192.168.50.34:3000")
     .await

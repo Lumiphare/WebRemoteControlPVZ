@@ -25,6 +25,7 @@ hyper = { version = "1.4.1", features = ["full"] }
 signal = { path = "src/signal" }
 axum = "0.7.5"
 enigo = "0.2.1"
+tower-http = {version = "0.5.2", features = ["fs"]}
 
 
 [dependencies.windows]
