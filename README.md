@@ -1,4 +1,4 @@
-# Web端远程控制游戏实现
+# Web端远程控制植物大战僵尸游戏实现
 
 1. **音视频**
     - [x] WebRTC连接成功
@@ -38,22 +38,23 @@
 
 
 ##### 注
-1. 植物大战僵尸版本为2.0.88，通过ffmpeg录制游戏画面，命令为
+1. 植物大战僵尸版本为2.0.88，通过ffmpeg录制游戏画面，powershell命令为
 ```powershell
-ffmpeg -re \
-    -f gdigrab \
-    -framerate 30 \
-    -draw_mouse 0 \
-    -i title="植物大战僵尸杂交版v2.0.88" \
-    -pix_fmt yuv420p \
-    -vcodec libvpx \
-    -b:v 1M \
-    -cpu-used 5 \
-    -deadline 1 \
-    -g 10 \
-    -error-resilient 1 \
-    -f rtp \
+ffmpeg -re `
+    -f gdigrab `
+    -framerate 30 `
+    -draw_mouse 0 `
+    -i title="植物大战僵尸杂交版v2.0.88" `
+    -pix_fmt yuv420p `
+    -vcodec libx264 `
+    -b:v 1M `
+    -cpu-used 5 `
+    -deadline 1 `
+    -g 10 `
+    -error-resilient 1 `
+    -f rtp `
     rtp://127.0.0.1:5004?pkt_size=1200
 ```
 2. 由于Rust的windows库的API实现，目前只支持Windows系统
 3. 前端目前只有做了ios16上safari的测试
+4. 将来考虑做成虚拟机版本，可以运行多种游戏
