@@ -24,12 +24,36 @@
     - [x] 局域网成功连接
     - [x] 生成SDP并返回前端
     - [ ] 启动游戏
+    - [ ] 增加Esc键操控
     - [ ] 使用DXGI完成屏幕录制
     - [ ] 多机运行及负载均衡
 
 4. **前端**
     - [x] 移动端视频显示问题
     - [x] 移动端全屏播放
+    - [ ] 增加Esc键操控
 
 5. **虚拟化**
     - [ ] XenServer实现虚拟化
+
+
+##### 注
+1. 植物大战僵尸版本为2.0.88，通过ffmpeg录制游戏画面，命令为
+```powershell
+ffmpeg -re \
+    -f gdigrab \
+    -framerate 30 \
+    -draw_mouse 0 \
+    -i title="植物大战僵尸杂交版v2.0.88" \
+    -pix_fmt yuv420p \
+    -vcodec libvpx \
+    -b:v 1M \
+    -cpu-used 5 \
+    -deadline 1 \
+    -g 10 \
+    -error-resilient 1 \
+    -f rtp \
+    rtp://127.0.0.1:5004?pkt_size=1200
+```
+2. 由于Rust的windows库的API实现，目前只支持Windows系统
+3. 前端目前只有做了ios16上safari的测试
