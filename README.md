@@ -60,3 +60,6 @@ ffmpeg `
 2. 由于Rust的windows库的API实现，目前只支持Windows系统
 3. 前端目前只有做了ios16上safari的测试
 4. 将来考虑做成虚拟机版本，可以运行多种游戏
+
+##### 演示视频
+https://private-user-images.githubusercontent.com/58658634/361263795-cda028da-4f9e-47fd-9a2b-664cc2edac0c.mp4
