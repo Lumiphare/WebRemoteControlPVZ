@@ -5,6 +5,7 @@
     - [x] Web端发送控制视频信号
         - [x] 获取鼠标在视频中的坐标并创建通道发送
     - [ ] 获取声音信号，（FFmpeg 实现）
+    - [x] 视频画面断线重连问题
 
 2. **控制**
     - [x] 使用Rust的windows库的API实现
@@ -40,13 +41,14 @@
 ##### 注
 1. 植物大战僵尸版本为2.0.88，通过ffmpeg录制游戏画面，powershell命令为
 ```powershell
-ffmpeg -re `
+ffmpeg `
+    -re `
     -f gdigrab `
     -framerate 30 `
     -draw_mouse 0 `
     -i title="植物大战僵尸杂交版v2.0.88" `
     -pix_fmt yuv420p `
-    -vcodec libx264 `
+    -vcodec libvpx `
     -b:v 1M `
     -cpu-used 5 `
     -deadline 1 `

@@ -56,7 +56,8 @@ async fn main() -> Result<()> {
         .route("/post", post(recv_and_send_possession))
         .nest_service("/", get_service(ServeDir::new("./web")));
 
-    let listener = tokio::net::TcpListener::bind("192.168.50.34:3000")
+    // let listener = tokio::net::TcpListener::bind("192.168.50.34:3000")
+    let listener = tokio::net::TcpListener::bind("[240e:3b6:30f1:16b0:5871:4e46:37b6:b699]:3000")
     .await
     .unwrap();
 
